@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 const morgan = require("morgan");
 import Database from "./config/database.js";
+
 // config dotenv file
 require("dotenv").config();
+
 //rest obj
 const app = express();
 
