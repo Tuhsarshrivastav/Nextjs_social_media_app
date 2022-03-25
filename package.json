@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r esm server.js",
-    "server":"nodemon -r esm server.js",
-    "client":"npm run dev --prefix client",
-    "dev":" concurrently \"npm run server\" \"npm run client\" "
+    "server": "nodemon -r esm server.js",
+    "client": "npm run dev --prefix client",
+    "dev": " concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

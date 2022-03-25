@@ -10,7 +10,7 @@ const register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/register", {
+      .post("http://localhost:5000/api/register", {
         name,
         email,
         password,
@@ -23,8 +23,8 @@ const register = () => {
     <Layout>
       <div className="row d-flex align-items-center justify-content-center mb-4">
         <div className="col-md-8">
+          <h1 className="p-3 text-center">Register Page</h1>
           <form>
-            <h2 className="p-3 text-center">Register Page</h2>
             <div className="mb-3">
               <label htmlFor="exampleInputName1" className="form-label">
                 Name
@@ -64,10 +64,11 @@ const register = () => {
               />
             </div>
             <select
-              className="form-select mb-3"
+              className="form-select"
+              defaultValue={"DEFAULT"}
               aria-label="Default select example"
             >
-              <option selected>Security Question</option>
+              <option value="DEFAULT">Security Question</option>
               <option value={1}>Enter You Favrite Food Name ?</option>
               <option value={2}>Enter Your Favrite Sports ?</option>
               <option value={3}>Enter Your Best Friend Name ?</option>
@@ -79,7 +80,7 @@ const register = () => {
                 type="text"
                 placeholder="Answer here"
                 className="form-control"
-                id="exampleInputName1"
+                id="exampleInputAnswer1"
                 aria-describedby="nameHelp"
               />
             </div>
