@@ -6,32 +6,37 @@ import Layout from "./../components/Layout/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-const register = () => {
-  const [name, setName] = useState("");
+
+const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [answer, setAnswer] = useState("");
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [state, setState] = useContext(UserContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/register`,
+        `${process.env.NEXT_PUBLIC_API}/login`,
         {
-          name,
           email,
           password,
-          answer,
         }
       );
+      setState({
+        user: data.user,
+        token: data.token,
+      });
+      window.localStorage.setItem("auth", JSON.stringify(data));
       setLoading(false);
-      toast.success("User Register Successfully");
-      router.push("/login");
+      console.log(data);
+      toast.success("User Login Successfully");
+      router.push("/");
     } catch (error) {
-      toast.error(error.response.data);
+      toast.error("Eror,Try Again ");
     }
   };
   if (state && state.token) router.push("/");
@@ -39,7 +44,7 @@ const register = () => {
     <Layout>
       <div className="row d-flex align-items-center justify-content-center mb-4">
         <div className="col-md-8">
-          <h1 className="p-3 text-center">Register Page</h1>
+          <h1 className="p-3 text-center">Login Page</h1>
           <form>
             <ToastContainer
               position="top-center"
@@ -52,19 +57,7 @@ const register = () => {
               draggable
               pauseOnHover
             />
-            <div className="mb-3">
-              <label htmlFor="exampleInputName1" className="form-label">
-                Name
-              </label>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                className="form-control"
-                id="exampleInputName1"
-                aria-describedby="nameHelp"
-              />
-            </div>
+
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email address
@@ -90,33 +83,13 @@ const register = () => {
                 id="exampleInputPassword1"
               />
             </div>
-            <select
-              className="form-select"
-              defaultValue={"DEFAULT"}
-              aria-label="Default select example"
-            >
-              <option value="DEFAULT">Security Question</option>
-              <option value={1}>Enter You Favrite Food Name ?</option>
-              <option value={2}>Enter Your Favrite Sports ?</option>
-              <option value={3}>Enter Your Best Friend Name ?</option>
-            </select>
-            <div className="mb-3">
-              <input
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                type="text"
-                placeholder="Answer here"
-                className="form-control"
-                id="exampleInputAnswer1"
-                aria-describedby="nameHelp"
-              />
-            </div>
+
             <div className="d-flex flex-row">
               <button
                 type="submit"
                 onClick={handleSubmit}
                 className="btn btn-primary btn-lg"
-                disabled={!name || !password || !email || !answer}
+                disabled={!password || !email}
               >
                 {loading ? (
                   <>
@@ -128,11 +101,11 @@ const register = () => {
                     ></span>
                   </>
                 ) : (
-                  "Register"
+                  "Login"
                 )}
               </button>
               <p className="m-3">
-                Already Registerd ?<Link href="/login">Login !</Link>
+                New User ?<Link href="/register">Regsiter !</Link>
               </p>
             </div>
           </form>
@@ -142,4 +115,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default login;
