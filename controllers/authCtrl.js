@@ -29,3 +29,27 @@ export const registerController = async (req, res) => {
     return res.status(400).send("Error , Try Again!");
   }
 };
+export const loginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    //check user in db
+    const user = await userModel.findOne({ email });
+    if (!user) return res.status(400).send("Invalid User");
+    //check password
+    const match = await comaprePassword(password, user.password);
+    if (!match) return res.status(400).send("Invalid Password");
+    //jwt token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    user.password = undefined;
+    user.answer = undefined;
+    res.status(200).json({
+      token,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send("Error, Try Again");
+  }
+};
