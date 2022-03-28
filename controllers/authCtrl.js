@@ -53,3 +53,13 @@ export const loginController = async (req, res) => {
     return res.status(400).send("Error, Try Again");
   }
 };
+
+// currentUserController
+export const currentUserController = async (req, res) => {
+  try {
+    await userModel.findById(req.user._id);
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
