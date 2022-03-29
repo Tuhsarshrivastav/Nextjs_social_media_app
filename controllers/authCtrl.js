@@ -1,5 +1,6 @@
 import userModel from "../models/userModel";
 import { hashPassword, comaprePassword } from "../utils/helper";
+import jwt from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   const { name, email, password, answer } = req.body;

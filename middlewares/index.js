@@ -1,6 +1,6 @@
-import exressjwt from "express-jwt";
-
-export const requireSignin = exressjwt({
-  secret: process.env.JWT_SECRET,
+import expressJwt from "express-jwt";
+const secret = process.env.JWT_SECRET;
+export const requireSignin = expressJwt({
+  secret: "hashalgo",
   algorithms: ["HS256"],
 });

@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context";
-import { useRouter } from "next/router";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../context";
 import axios from "axios";
-import Spinner from "../components/Spinner";
+import { useRouter } from "next/router";
+import Spinner from "../Spinner";
 
-const UserRoute = () => {
-  const router = useRouter();
+const UserRoute = ({ children }) => {
   const [ok, setOk] = useState(false);
+  const router = useRouter();
   const [state] = useContext(UserContext);
-
   useEffect(() => {
     if (state && state.token) getCurrentUser();
   }, [state && state.token]);
@@ -23,12 +22,16 @@ const UserRoute = () => {
           },
         }
       );
+      if (data.ok) setOk(true);
     } catch (error) {
       router.push("/login");
     }
   };
-  if (data.ok) setOk(true);
-
+  process.browser &&
+    state === null &&
+    setTimeout(() => {
+      getCurrentUser();
+    }, 1000);
   return !ok ? <Spinner /> : <>{children}</>;
 };
 

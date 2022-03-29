@@ -1,3 +1,4 @@
+require("dotenv").config();
 import express from "express";
 import cors from "cors";
 import Database from "./config/database.js";
@@ -5,7 +6,6 @@ import authRoutes from "./routes/authRoutes.js";
 const morgan = require("morgan");
 
 // config dotenv file
-require("dotenv").config();
 
 // database
 Database();
