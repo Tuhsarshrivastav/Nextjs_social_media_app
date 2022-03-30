@@ -91,7 +91,7 @@ const register = () => {
               />
             </div>
             <select
-              className="form-select"
+              className="form-select mb-3"
               defaultValue={"DEFAULT"}
               aria-label="Default select example"
             >

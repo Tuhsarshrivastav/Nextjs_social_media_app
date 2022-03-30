@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../context";
+import { UserContext } from ".././context";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Spinner from "../Spinner";
+import Spinner from "../components/Spinner";
 
 const UserRoute = ({ children }) => {
   const [ok, setOk] = useState(false);

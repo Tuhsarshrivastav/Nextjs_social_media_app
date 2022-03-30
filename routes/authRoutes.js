@@ -3,6 +3,7 @@ import {
   registerController,
   loginController,
   currentUserController,
+  forgotPasswordController,
 } from "../controllers/authCtrl";
 import { requireSignin } from "../middlewares/";
 //router object
@@ -17,5 +18,8 @@ router.post("/login", loginController);
 
 // currentUser route
 router.get("/currentuser", requireSignin, currentUserController);
+
+// forgot password route
+router.post("/forgot-password", forgotPasswordController);
 
 export default router;
