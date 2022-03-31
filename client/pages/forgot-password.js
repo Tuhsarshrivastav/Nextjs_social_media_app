@@ -18,14 +18,11 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/forgot-password`,
-        {
-          email,
-          newPassword,
-          answer,
-        }
-      );
+      const { data } = await axios.post(`/forgot-password`, {
+        email,
+        newPassword,
+        answer,
+      });
       setLoading(false);
       toast.success("Password Has Been Reset");
       router.push("/login");

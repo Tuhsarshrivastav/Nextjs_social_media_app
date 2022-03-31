@@ -19,13 +19,10 @@ const login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const { data } = await axios.post(`/login`, {
+        email,
+        password,
+      });
       setState({
         user: data.user,
         token: data.token,

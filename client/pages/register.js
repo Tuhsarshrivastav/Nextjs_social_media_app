@@ -18,15 +18,12 @@ const register = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/register`,
-        {
-          name,
-          email,
-          password,
-          answer,
-        }
-      );
+      const { data } = await axios.post(`/register`, {
+        name,
+        email,
+        password,
+        answer,
+      });
       setLoading(false);
       toast.success("User Register Successfully");
       router.push("/login");
