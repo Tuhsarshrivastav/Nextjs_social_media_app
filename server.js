@@ -1,4 +1,3 @@
-require("dotenv").config();
 import express from "express";
 import cors from "cors";
 import Database from "./config/database.js";
@@ -8,6 +7,7 @@ import postRoutes from "./routes/postRoute";
 const morgan = require("morgan");
 
 // config dotenv file
+require("dotenv").config();
 
 // database
 Database();
