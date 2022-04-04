@@ -3,6 +3,7 @@ import { requireSignin } from "../middlewares";
 import {
   createPostController,
   imageUploadController,
+  userPostsController,
 } from "./../controllers/postCtrl";
 
 import expressFormidable from "express-formidable";
@@ -20,4 +21,8 @@ router.post(
   expressFormidable({ maxFieldsSize: 5 * 1024 * 1024 }),
   imageUploadController
 );
+
+// userpost
+
+router.get("/user-post", requireSignin, userPostsController);
 export default router;
