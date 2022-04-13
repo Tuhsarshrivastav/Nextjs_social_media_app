@@ -34,7 +34,10 @@ const Header = () => {
             <a className="navbar-brand">Social Media App</a>
           </Link>
 
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <div
+            className="collapse navbar-collapse btn"
+            id="navbarTogglerDemo03"
+          >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link href="/">
@@ -46,7 +49,7 @@ const Header = () => {
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link href="/about">
                   <a
                     className={`nav-link ${
@@ -57,7 +60,7 @@ const Header = () => {
                     About
                   </a>
                 </Link>
-              </li>
+              </li> */}
               {state !== null ? (
                 <>
                   <li className="nav-item">
