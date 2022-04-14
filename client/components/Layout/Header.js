@@ -49,18 +49,6 @@ const Header = () => {
                   </a>
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link href="/about">
-                  <a
-                    className={`nav-link ${
-                      currentTab === "/about" && "active"
-                    }`}
-                    aria-current="page"
-                  >
-                    About
-                  </a>
-                </Link>
-              </li> */}
               {state !== null ? (
                 <>
                   <li className="nav-item">
@@ -96,7 +84,7 @@ const Header = () => {
                         }`}
                         aria-current="page"
                       >
-                        Register
+                        Signup
                       </a>
                     </Link>
                   </li>
