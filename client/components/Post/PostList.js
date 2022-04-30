@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import moment from "moment";
 import { useRouter } from "next/router";
 import renderHTML from "react-render-html";
@@ -6,9 +6,11 @@ import PostImage from "./PostImage";
 import { BsSuitClubFill, BsSuitHeart } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { FaComment, FaEdit, FaTrash } from "react-icons/fa";
-
+import { UserContext } from "../../context/index";
 const PostList = ({ posts }) => {
   const defaultImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+  const router = useRouter();
+  const { state } = useContext(UserContext);
   return (
     <>
       {posts &&
@@ -42,10 +44,17 @@ const PostList = ({ posts }) => {
                   <p>
                     <GoComment size={25} /> 3 Comments
                   </p>
-                  <div className="ms-4">
-                    <FaEdit size={25} /> &nbsp; &nbsp;
-                    <FaTrash color="red" size={25} />
-                  </div>
+                  {state && state.user && state.user._id === post.postedBy._id && (
+                    <div className="ms-4">
+                      <FaEdit
+                        size={25}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => router.push(`/user/post/${post._id}`)}
+                      />{" "}
+                      &nbsp; &nbsp;
+                      <FaTrash color="red" size={25} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
